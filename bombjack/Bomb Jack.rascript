@@ -200,19 +200,19 @@ achievement(
 
 
 //FUNCTIONALITY ACHIEVEMENTS
-achievement(
-    title = "Default Settings Check",
-    description = "Coin A 1 Coin 1 Credit, Coin B 1 Coin 1 Credit, Single Player Mode, 3 Lives, Cabinet Upright, Demo Sounds On, No Bonus Life, Bird Speed Hard, Enemies Number Speed Hard, Special Coin Easy",
-    trigger = IsUsingDefaultSettings(),
-    points = 0
-)
+//achievement(
+//    title = "Default Settings Check",
+//    description = "Coin A 1 Coin 1 Credit, Coin B 1 Coin 1 Credit, Single Player Mode, 3 Lives, Cabinet Upright, Demo Sounds On, No Bonus Life, Bird Speed Hard, Enemies Number Speed Hard, Special Coin Easy",
+//    trigger = IsUsingDefaultSettings(),
+//    points = 0
+//)
 
-achievement(
-    title = "Game Over",
-    description = "Single Player Mode, 3 Lives, No Bonus Life, Bird Speed Hard, Enemies Number Speed Hard, Special Coin Easy",
-    trigger = GameOver(),
-    points = 0
-)
+//achievement(
+//    title = "Game Over",
+//    description = "Single Player Mode, 3 Lives, No Bonus Life, Bird Speed Hard, Enemies Number Speed Hard, Special Coin Easy",
+//    trigger = GameOver(),
+//    points = 0
+//)
 
 //RICH PRESENCE
 rich_presence_conditional_display(!DefaultDipswitchCheck(), "Playing casually with non-default settings")
