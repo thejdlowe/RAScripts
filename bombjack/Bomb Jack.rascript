@@ -214,6 +214,15 @@ achievement(
     points = 0
 )
 
+//RICH PRESENCE
+rich_presence_conditional_display(!DefaultDipswitchCheck(), "Playing casually with non-default settings")
+rich_presence_display("Score: {0} | L={1} | {2} Lives",
+    rich_presence_macro("Number", Score()),
+    rich_presence_macro("Number", CurrentLevel),
+    rich_presence_macro("Number", CurrentLifeCount)
+)
+
+//LEADERBOARD
 leaderboard(
     "High Score",
     "High score on default settings (3 lives, No bonus lives via points, Bird Speed Hard, Enemies Number Speed Hard, Special Coin Easy)",
