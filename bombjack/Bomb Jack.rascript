@@ -63,6 +63,8 @@ CurrentLevel = byte(0x01AF)
 CurrentPowerTimer = byte(0x0036)
 CurrentPowerLevel = byte(0x045F)
 
+CurrentMultiplier = byte(0x01AC)
+
 function IsUsingDefaultSettings() {
     start = once(GameState() == DemoMode)
     cancel = never(GameState() == InGameMode && !IsSinglePlayer())
@@ -130,11 +132,33 @@ achievement(
     points = 0
 )
 
+//MULTIPLIER ACHIEVEMENTS
+achievement(
+    title = "Multiplier? I Hardly Know 'Er!",
+    description = "Get your multiplier to 2x",
+    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && CurrentMultiplier == 1,
+    points = 0
+)
+
+achievement(
+    title = "Multiplier? I Hardly Know 'Er! 2",
+    description = "Get your multiplier to 5x",
+    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && CurrentMultiplier == 4,
+    points = 0
+)
+
 //POWERUP ACHIEVEMENTS
 achievement(
     title = "Platinum Power Up",
     description = "Grab the Power Up Coin when it is gray to get the most points out of it",
     trigger = IsUsingDefaultSettings() && IsSinglePlayer() && GrabbedPowerUp() && CurrentPowerLevel == 0 && prev(CurrentPowerLevel) == 7,
+    points = 0
+)
+
+achievement(
+    title = "Platinum Power Up To The Max",
+    description = "Get your multiplier to 5x and grab the Power Up Coin when it is gray",
+    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && CurrentMultiplier == 4 && GrabbedPowerUp() && CurrentPowerLevel == 0 && prev(CurrentPowerLevel) == 7,
     points = 0
 )
 
