@@ -14,6 +14,11 @@
 //        1 = 2 player
 // $0027: Indicator of which player is playing (0 = Player 1, 1 = Player 2)
 // $0036: Timer for when you collect the Power Up; is 0 constantly until the power up is activated
+// $0041: This appears to be the state of the player touching things.
+//      8 = standing on ground;
+//      9 = standing on ground and touching wall
+//      1 = touching wall
+//      0 = touching nothing
 // $0070: This is a flag for if we are currently in a game. 1 = playable, 0 = nonplayable
 //        
 //        HOWEVER, if it's a two player game, and one player dies far before the other, it still stays marked as playable and does not change to game over.
@@ -64,6 +69,8 @@ CurrentPowerTimer = byte(0x0036)
 CurrentPowerLevel = byte(0x045F)
 
 CurrentMultiplier = byte(0x01AC)
+
+CurrentBombJackTouchingStatus = byte(0x0041)
 
 function IsUsingDefaultSettings() {
     start = once(GameState() == DemoMode)
@@ -205,6 +212,22 @@ achievement(
     description = "Coin A 1 Coin 1 Credit, Coin B 1 Coin 1 Credit, Single Player Mode, 3 Lives, Cabinet Upright, Demo Sounds On, No Bonus Life, Bird Speed Hard, Enemies Number Speed Hard, Special Coin Easy",
     trigger = IsUsingDefaultSettings(),
     points = 0
+)
+
+achievement(
+    title = "Ride That Wall!",
+    description = "Point press off of a wall by pushing against it then away 10 times in one jump",
+    points = 0,
+    trigger = IsUsingDefaultSettings() &&
+        IsSinglePlayer() &&
+//        once(CurrentBombJackTouchingStatus == 0) && 
+        measured(
+            tally(3, 
+                (CurrentBombJackTouchingStatus == 0 && prev(CurrentBombJackTouchingStatus) == 1)
+            )
+        ) && 
+        never(CurrentBombJackTouchingStatus == 8) &&
+        never(CurrentBombJackTouchingStatus == 9)
 )
 
 //achievement(
