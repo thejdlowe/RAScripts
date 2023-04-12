@@ -114,28 +114,28 @@ function Score() {
 achievement(
     title = "These Are Some Spicy Cinnamon Balls!",
     description = "Collect 20 Fire Bombs in one stage",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && BombsLeft == 0 && LitBombsCollected >= 20,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && LitBombsCollected >= 20,
     points = 0
 )
 
 achievement(
     title = "They Really Pack Some Heat!",
     description = "Collect 21 Fire Bombs in one stage",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && BombsLeft == 0 && LitBombsCollected >= 21,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && LitBombsCollected >= 21,
     points = 0
 )
 
 achievement(
     title = "But They Do Taste Funny...",
     description = "Collect 22 Fire Bombs in one stage",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && BombsLeft == 0 && LitBombsCollected >= 22,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && LitBombsCollected >= 22,
     points = 0
 )
 
 achievement(
     title = "I Have Just Been Informed These Are Not Cinnamon Balls",
     description = "Collect 23 Fire Bombs in one stage",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && BombsLeft == 0 && LitBombsCollected >= 23,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && LitBombsCollected >= 23,
     points = 0
 )
 
@@ -143,14 +143,14 @@ achievement(
 achievement(
     title = "Multiplier? I Hardly Know 'Er!",
     description = "Get your multiplier to 2x",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && CurrentMultiplier == 1,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && CurrentMultiplier == 1,
     points = 0
 )
 
 achievement(
     title = "Multiplier? I Hardly Know 'Er! 2",
     description = "Get your multiplier to 5x",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && CurrentMultiplier == 4,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && CurrentMultiplier == 4,
     points = 0
 )
 
@@ -158,14 +158,14 @@ achievement(
 achievement(
     title = "Platinum Power Up",
     description = "Grab the Power Up Coin when it is gray to get the most points out of it",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && GrabbedPowerUp() && CurrentPowerLevel == 0 && prev(CurrentPowerLevel) == 7,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && GrabbedPowerUp() && CurrentPowerLevel == 0 && prev(CurrentPowerLevel) == 7,
     points = 0
 )
 
 achievement(
     title = "Platinum Power Up To The Max",
     description = "Get your multiplier to 5x and grab the Power Up Coin when it is gray",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && CurrentMultiplier == 4 && GrabbedPowerUp() && CurrentPowerLevel == 0 && prev(CurrentPowerLevel) == 7,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && CurrentMultiplier == 4 && GrabbedPowerUp() && CurrentPowerLevel == 0 && prev(CurrentPowerLevel) == 7,
     points = 0
 )
 
@@ -173,35 +173,35 @@ achievement(
 achievement(
     title = "Did They Build The Pyramids From The Top Down?",
     description = "Complete Round 1 (Egypt)",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 1 && LitBombsCollected != 0,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 1 && LitBombsCollected != 0,
     points = 0
 )
 
 achievement(
     title = "Rome If You Want To; Rome Around The World",
     description = "Complete Round 2 (Rome)",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 2 && LitBombsCollected != 0,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 2 && LitBombsCollected != 0,
     points = 0
 )
 
 achievement(
     title = "Now's The Time In Bombjack When We Dance",
     description = "Complete Round 3 (Germany)",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 3 && LitBombsCollected != 0,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 3 && LitBombsCollected != 0,
     points = 0
 )
 
 achievement(
     title = "You Know, They Say This Stage, It's Like Its Own Character",
     description = "Complete Round 4 (New York)",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 4 && LitBombsCollected != 0,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 4 && LitBombsCollected != 0,
     points = 0
 )
 
 achievement(
     title = "Around The World In 5 Stages",
     description = "Complete Round 5 (California)",
-    trigger = IsUsingDefaultSettings() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 5 && LitBombsCollected != 0,
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 5 && LitBombsCollected != 0,
     points = 0
 )
 
@@ -218,11 +218,12 @@ achievement(
     title = "Ride That Wall!",
     description = "Point press off of a wall by pushing against it then away 10 times in one jump",
     points = 0,
-    trigger = IsUsingDefaultSettings() &&
+    trigger = 
+        once(CurrentBombJackTouchingStatus == 0) && 
+        DefaultDipswitchCheck() &&
         IsSinglePlayer() &&
-//        once(CurrentBombJackTouchingStatus == 0) && 
         measured(
-            tally(3, 
+            tally(10, 
                 (CurrentBombJackTouchingStatus == 0 && prev(CurrentBombJackTouchingStatus) == 1)
             )
         ) && 
