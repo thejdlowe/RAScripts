@@ -139,6 +139,28 @@ achievement(
     points = 0
 )
 
+//SCORE ACHIEVEMENTS
+achievement(
+    title = "Throw Your Name Into The Hall Of Fame!",
+    description = "Beat the default high score of 10,000 points",
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && Score() >= 10000,
+    points = 0
+)
+
+achievement(
+    title = "Throw Your Name Into The Hall Of Fame! II",
+    description = "Beat the default high score of 100,000 points",
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && Score() >= 100000,
+    points = 0
+)
+
+achievement(
+    title = "Throw Your Name Into The Hall Of Fame! III",
+    description = "Beat the default high score of 1,000,000 points",
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && Score() >= 1000000,
+    points = 0
+)
+
 //MULTIPLIER ACHIEVEMENTS
 achievement(
     title = "Multiplier? I Hardly Know 'Er!",
@@ -205,6 +227,14 @@ achievement(
     points = 0
 )
 
+achievement(
+    title = "It's A Lucky Number, Right?",
+    description = "Complete Round 13",
+    trigger = DefaultDipswitchCheck() && IsSinglePlayer() && BombsLeft == 0 && CurrentLevel == 13 && LitBombsCollected != 0,
+    points = 0
+)
+
+
 
 //FUNCTIONALITY ACHIEVEMENTS
 achievement(
@@ -229,6 +259,38 @@ achievement(
         ) && 
         never(CurrentBombJackTouchingStatus == 8) &&
         never(CurrentBombJackTouchingStatus == 9)
+)
+
+achievement(
+    title = "Ride That Wall! II",
+    description = "Point press off of a wall by pushing against it then away 100 times in one game",
+    points = 0,
+    trigger = 
+        once(CurrentBombJackTouchingStatus == 0) && 
+        DefaultDipswitchCheck() &&
+        IsSinglePlayer() &&
+        measured(
+            tally(100, 
+                (CurrentBombJackTouchingStatus == 0 && prev(CurrentBombJackTouchingStatus) == 1)
+            )
+        ) && 
+        never(GameOver())
+)
+
+achievement(
+    title = "Ride That Wall! III",
+    description = "Point press off of a wall by pushing against it then away 250 times in one game",
+    points = 0,
+    trigger = 
+        once(CurrentBombJackTouchingStatus == 0) && 
+        DefaultDipswitchCheck() &&
+        IsSinglePlayer() &&
+        measured(
+            tally(250, 
+                (CurrentBombJackTouchingStatus == 0 && prev(CurrentBombJackTouchingStatus) == 1)
+            )
+        ) && 
+        never(GameOver())
 )
 
 //achievement(
